@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {%load static%} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/book-table.css' %}"
+/>
+{% endblock head %} {% block content %}
+<div class="book-table-wrapper">
+  <div class="image">
+    <h1>5-star service!</h1>
+    <img
+      src="{% static 'img/book.jpg' %}"
+      id="restaurant-image"
+      alt="Restaurant dining area"
+    />
+  </div>
+  <div class="inner-wrapper">
+    <h2 id="headline">Book a Table</h2>
+    <p id="alert">Restaurant works between 11 AM and 11 PM.</p>
+    <!--{% if form.non_field_errors %}
+    <div class="error">{{ form.non_field_errors }}</div>
+    {% endif %}-->
+
+    <form method="post" class="book-table-form">
+      {% csrf_token %} {{ form.as_p }}
+      <p>Booking time must be within 11:00 AM - 9:59 PM.</p>
+      <button type="submit" class="book-button">Book Now</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
