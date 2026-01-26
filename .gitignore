@@ -1,11 +1,10 @@
-.env
-
 __pycache__/
 *.py[cod]
 *$py.class
 
 db.sqlite3
 
+.env
 venv/
 env/
 .venv/
@@ -13,7 +12,6 @@ env/
 ENV/
 env.bak/
 ENV.bak/
-
 
 core.Microsoft*
 core.mongo*
