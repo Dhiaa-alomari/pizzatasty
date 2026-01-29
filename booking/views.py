@@ -76,7 +76,6 @@ def book_table(request):
     """
     if request.method == 'POST':
         form = BookingForm(request.POST)
-        print(form.data)
         if form.is_valid():
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
@@ -188,6 +187,7 @@ def update_booking(request, id):
         _date = datetime.strptime(date_str, "%Y-%m-%d").date()
         _time = datetime.strptime(time_str, "%H:%M").time()
         _guests = int(guests)
+        tzname = request.COOKIES.get("django_timezone", "UTC")
 
         current_time_str = time_control.strftime(
             "%H:%M", time_control.localtime())

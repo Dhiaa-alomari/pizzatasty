@@ -1,17 +1,10 @@
 .home-wrapper {
-  background-color: var(--color-grey-0);
+  background-color: #061918;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-}
-
-.home-wrapper #headline {
-  font-size: 4rem;
-  text-align: center;
-  padding: 5px 22px;
-  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .action-btns .button-link {
@@ -21,9 +14,9 @@
 }
 
 .home-wrapper .hero {
-  background-image: url("../img/bbq.webp");
+  /* background-image: url("../img/pizza_hero.webp"); */
   background-position: center;
-  height: 80vh;
+  height: auto;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,6 +27,10 @@
   margin: 0 auto;
   text-align: center;
   flex-direction: column;
+}
+
+.home-wrapper .main-btns {
+  height: fit-content;
 }
 
 .home-wrapper .action-btns {
@@ -67,9 +64,11 @@
 }
 
 .menu h1 {
-  margin: 50px auto;
+  margin: 10px auto 50px;
   text-align: center;
   text-transform: uppercase;
+  color: orange;
+  text-shadow: 0 0 5px black;
 }
 
 .menu-wrapper {

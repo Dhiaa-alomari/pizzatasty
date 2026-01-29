@@ -87,15 +87,6 @@ body {
   overflow-x: hidden;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
 input,
 button,
 textarea,
@@ -132,7 +123,7 @@ button:has(svg) {
 
 a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
   font-size: 2rem;
 }
 
@@ -149,6 +140,12 @@ h6,
 p {
   overflow-wrap: break-word;
   hyphens: auto;
+}
+
+img {
+  color: transparent;
+  max-width: 100%;
+  height: auto;
 }
 
 .alert {

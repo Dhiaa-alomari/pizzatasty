@@ -1,56 +1,34 @@
-from .models import Table, Booking 
-from datetime import datetime, timedelta, timezone as datetime_timezone
-from pytz import timezone, utc
-
+from django.shortcuts import get_object_or_404
+from datetime import datetime, timedelta
+from django.utils import timezone
+from .models import Table, Booking
 
 def find_available_table(date, time, guests, user, tzname):
-    print('FINDING TABLES...')
+    #  embed the date and time into a single datetime object
+    selected_datetime = datetime.combine(date, time)
+    
+    #  determine the time range for checking existing bookings
+    start_range = selected_datetime - timedelta(minutes=59)
+    end_range = selected_datetime + timedelta(minutes=59)
 
-    requested_datetime = datetime.combine(date, time)
-    one_hour = timedelta(hours=1)
-
-    print(requested_datetime)
-    local_tz = timezone(tzname or "UTC")
-    local_aware_datetime = local_tz.localize(requested_datetime)
-
-    # Convert the timezone-aware datetime to UTC
-    utc_datetime = local_aware_datetime.astimezone(utc)
-
-    print('utc', utc_datetime)
-    if utc_datetime < datetime.now(datetime_timezone.utc):
-        return None
-    # Check if the user already has any booking within 1 hour before
-    # or after the requested time
-    user_booking_conflict = Booking.objects.filter(
+    # check if the user has already booked a table within this time range
+    # we use the filter on date and time together
+    already_booked = Booking.objects.filter(
         user=user,
         date=date,
-        # Any booking 1 hour before
-        time__gte=(requested_datetime - one_hour).time(),
-        # Any booking 1 hour after
-        time__lte=(requested_datetime + one_hour).time()
+        time__range=(start_range.time(), end_range.time())
     ).exists()
 
-    if user_booking_conflict:
-        return None  # T
+    if already_booked:
+        return None
 
-    # Find all tables that can accommodate the number of guests
-    suitable_tables = Table.objects.filter(
-        capacity__gte=guests).order_by('capacity')
+    suitable_tables = Table.objects.filter(capacity__gte=guests)
 
-    print('TABLES: ', suitable_tables)
-    for table in suitable_tables:
-        # Check if there are any bookings for this table at the specified date
-        print('TABLE ', table, '\n')
-        print(user)
-        existing_bookings = Booking.objects.filter(
-            table=table, date=date)
-        requested_datetime = datetime.combine(date, time)
+    booked_tables = Booking.objects.filter(
+        date=date,
+        time=time
+    ).values_list('table_id', flat=True)
 
-        if not any(
-            abs((datetime.combine(booking.date, booking.time) -
-                 requested_datetime).total_seconds()) < 3600
-            for booking in existing_bookings
-        ):
-            return table
+    available_table = suitable_tables.exclude(id__in=booked_tables).first()
 
-    return None  # No suitable table available
+    return available_table

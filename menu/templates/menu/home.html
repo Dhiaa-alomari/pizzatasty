@@ -3,28 +3,25 @@
 {% endblock %} {% block content %}
 <div class="home-wrapper">
   <div class="hero">
-    {% if request.user.is_authenticated %}
-    <h2 id="headline">
-      Welcome to <span id="highlight-username"> East Flavors</span>!
-    </h2>
-    <div class="action-btns">
-      <a href="{% url 'menu' %}" class="button-link"> Explore Menu </a>
-      <a href="{% url 'book-table' %}" class="button-link"> Book a table </a>
-    </div>
-    {%else%}
-    <h2 id="headline">
-      Welcome to <span id="highlight-username"> East Flavors</span>!
-    </h2>
-    <div class="action-btns">
-      <a href="{% url 'menu' %}" class="button-link"> Explore Menu </a>
-      <a href="{% url 'login' %}" class="button-link">
-        Login and book a table
-      </a>
-    </div>
-    {%endif%}
+    <img src="{% static 'img/pizza_hero.webp' %}" alt="pizza image as website banner">
+  </div>
+    <div class="main-btns">
+      {% if request.user.is_authenticated %}
+      <div class="action-btns">
+        <a href="{% url 'menu' %}" class="button-link"> Explore Menu </a>
+        <a href="{% url 'book-table' %}" class="button-link"> Book a table </a>
+      </div>
+      {%else%}
+      <div class="action-btns">
+        <a href="{% url 'menu' %}" class="button-link"> Explore Menu </a>
+        <a href="{% url 'login' %}" class="button-link">
+          Login and book a table
+        </a>
+      </div>
+      {%endif%}
   </div>
   <div class="menu">
-    <h1>Find your best food</h1>
+    <h1>Best Pizza .. Tasty Pizza!</h1>
     <div class="menu-wrapper">
       <div class="menu-item">
         <img src="{% static 'img/front1.webp' %}" alt="img of mix food">
