@@ -1,5 +1,5 @@
 .home-wrapper {
-  background-color: #061918;
+  background-color: #030303;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,15 @@
 .action-btns .button-link {
   padding: 5px 22px;
   background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 25px;
   text-decoration: none;
+}
+
+.action-btns .button-link:hover {
+  cursor: pointer;
+  color:  orange;
+  border: 2px solid orange;
 }
 
 .home-wrapper .hero {
@@ -71,22 +79,50 @@
   text-shadow: 0 0 5px black;
 }
 
-.menu-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  gap: 20px;
+.explore_menu {
+  position: relative;
+  width: 30%;
+  height: auto;
+  margin: auto;  
 }
 
-#explore-menu {
-  padding: 5px 10px;
-  border-radius: 10px;
-  background-color: var(--color-blue-100);
-  border: none;
-  width: 200px;
-  margin: 20px;
+.explore_menu h5 {
   color: white;
-  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 100;
+  margin-bottom: 10px;
+}
+
+.explore_menu h5:hover {
+  color: orange;
+  text-decoration: none;
+}
+
+.menu_logo {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.menu_logo:hover {
+  opacity: 0.8;
+}
+
+.explore_menu::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(235, 8, 8, 0);
+}
+
+.explore_menu:hover::after {
+  content: "Explore Our Menu";
+  color: white;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .about {
@@ -117,6 +153,11 @@
   gap: 30px;
 }
 
+.contact-title {
+  font-weight: bold; 
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 769px) {
   .home-wrapper {
     text-align: center;
@@ -132,9 +173,14 @@
     padding: 7px 12px;
   }
 
-  .menu-wrapper {
-    grid-template-columns: repeat(1, 1fr);
+  .menu h1 {
+    margin: 0 10px 5px;
+    font-size: larger;
   }
+
+  .explore_menu {
+    width: 50%;
+  } 
 
   .about-text {
     display: flex;

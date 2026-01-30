@@ -1,28 +1,51 @@
 {% extends 'base.html' %} {%load static%} {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
 {% endblock head %} {% block content %}
+<h1 id="headline">Available dishes</h1>
 <div class="menu-wrapper">
-  <div class="inner-wrapper">
-    <h2 id="headline">Available dishes</h2>
-    <div class="menu-items">
-      {% for menu in menu_list %}
-      <div class="menu-item">
-        {% if menu.image %}
-        <img
-          src="{{ menu.image.url }}"
-          class="menu-image"
-          alt="{{ menu.name }} dish"
-        >
-        {% endif %}
-        <div class="text">
-          <h1 class="title">{{menu.name}}</h1>
-          <p class="description">{{menu.description}}</p>
-          <p class="price">€ {{menu.price}}</p>
-        </div>
-      </div>
-
-      {%endfor%}
-    </div>
+  <div class="menu-item">
+    <img src="{% static 'img/California-Style-Pizza.webp' %}" alt="img of mix food">
+    <p>California Style Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/Chicago-Deep-Dish-Pizza.webp' %}" alt="table of foods and drinks">
+    <p>Chicago Deep Dish Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/Detroit-Style-Pizza.webp' %}" alt="eating hummus with bread">
+    <p>Detroit Style Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/Grandma-Pizza.webp' %}" alt="bread salad sandwiches">
+    <p>Grandma Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/Neapolitan-Style-Pizza.webp' %}" alt="plate of salad">
+    <p>Neapolitan Style Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/New-Haven-Style-Apizza.webp' %}" alt="3 guys eating on the table">
+    <p>New Haven Style Apizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/New-York-Style-Pizza.webp' %}" alt="table of foods and drinks">
+    <p>New York Style Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/quad-city-pizza.webp' %}" alt="eating hummus with bread">
+    <p>Quad City Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/Roman-Style-Pizza.webp' %}" alt="bread salad sandwiches">
+    <p>Roman Style Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/Sicilian-Pizza.webp' %}" alt="plate of salad">
+    <p>Sicilian Pizza</p>
+  </div>
+  <div class="menu-item">
+    <img src="{% static 'img/St-Louis-Style-Pizza.webp' %}" alt="3 guys eating on the table">
+    <p>St. Louis Style Pizza</p>
   </div>
 </div>
 {% endblock %}

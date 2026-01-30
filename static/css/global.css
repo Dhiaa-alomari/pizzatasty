@@ -113,7 +113,7 @@ input:focus,
 button:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid var(--color-brand-600);
+  outline: 2px solid orange;
   outline-offset: -1px;
 }
 
@@ -146,6 +146,7 @@ img {
   color: transparent;
   max-width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 
 .alert {
@@ -177,5 +178,5 @@ img {
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
-  background-color: var(--color-grey-0);
+  background-color: #030303;
 }

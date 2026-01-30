@@ -22,47 +22,36 @@
   </div>
   <div class="menu">
     <h1>Best Pizza .. Tasty Pizza!</h1>
-    <div class="menu-wrapper">
-      <div class="menu-item">
-        <img src="{% static 'img/front1.webp' %}" alt="img of mix food">
-      </div>
-      <div class="menu-item">
-        <img src="{% static 'img/front2.webp' %}" alt="table of foods and drinks">
-      </div>
-      <div class="menu-item">
-        <img src="{% static 'img/front3.webp' %}" alt="eating hummus with bread">
-      </div>
-
-      <div class="menu-item">
-        <img src="{% static 'img/front44.webp' %}" alt="bread salad sandwiches">
-      </div>
-      <div class="menu-item">
-        <img src="{% static 'img/sallad1.webp' %}" alt="plate of salad">
-      </div>
-      <div class="menu-item">
-        <img src="{% static 'img/front6.webp' %}" alt="3 guys eating on the table">
-      </div>
+    <div class="explore_menu">
+      <a href="{% url 'menu' %}" class="button-link">
+        <h5>Click To Explore Our Menu</h5>
+        <img class="menu_logo" src="{% static 'img/menu_logo.webp' %}" alt="Explore Menu Button">
+      </a>
     </div>
-    <a href="{% url 'menu' %}" class="button-link"> Explore Menu </a>
   </div>
   <div class="about">
     <h1>About Us</h1>
     <div class="about-text">
-      <img src="{% static 'img/about11.jpg' %}" alt="restaurant employee">
+      <img src="{% static 'img/about.webp' %}" alt="restaurant employee">
       <p>
-        Welcome to East Flavors, where tradition meets taste! For over 15 years,
-        we’ve been bringing the rich and vibrant flavors of the Middle East to
-        our community, offering a menu filled with authentic dishes crafted from
-        the finest ingredients. From savory kebabs and fragrant rice to our
-        freshly baked flatbreads and signature hummus, every meal at East
-        Flavors tells a story of family recipes, age-old cooking techniques, and
-        a love for sharing the taste of home. Whether you're a long-time fan of
-        Middle Eastern cuisine or experiencing it for the first time, we invite
-        you to savor the flavors that have made us a local favorite for more
-        than a decade. At East Flavors, it’s not just about food—it’s about
-        creating unforgettable dining experiences. Join us for a meal and
-        discover why we’ve been proudly serving the heart of the Middle East on
-        every plate!
+        Welcome to Tasty Pizza, where flavor meets perfection!
+        For over 15 years, we’ve been serving our community with
+         a variety of mouthwatering pizzas made from the finest 
+         ingredients. From classic Margherita to innovative new 
+         flavors with fresh, quality toppings, every slice at 
+         Tasty Pizza tells a story of passion, craftsmanship, 
+         and a love for sharing great food.
+        Whether you're a die-hard pizza fan or someone trying 
+        pizza for the first time, Tasty Pizza offers a unique 
+        experience with flavors that stand out. Whether you 
+        choose to enjoy our pizzas in a cozy atmosphere or take
+         them home, we’ve been proudly serving our delicious 
+         pies for over a decade, becoming a local favorite along
+          the way.
+
+        At Tasty Pizza, it's not just about food—it's about creating 
+        unforgettable dining moments with every bite. Join us and 
+        discover why we’ve been the go-to spot for pizza lovers in the are
       </p>
     </div>
   </div>
@@ -72,20 +61,23 @@
     <div class="about-text">
       <div class="contact">
         <div>
-          <p>Phone</p>
-          <p>021142588</p>
-          <p>Opening hours: 11:00 to 23:00 Everyday</p>
+          <p class="contact-title">Phone</p>
+          <p>012-1234567</p>
         </div>
         <div>
-          <p>Email</p>
-          <p>eastflavores.pp4@gmail.com</p>
+          <p class="contact-title">Opening Hours</p>
+          <p>Monday - Sunday: 11:00 - 23:00</p>
         </div>
         <div>
-          <p>Address</p>
-          <p>Gjutformsgatan 6, 721 33 Västerås</p>
+          <p class="contact-title">Email</p>
+          <p>tasty.pizza@outlook.com</p>
+        </div>
+        <div>
+          <p class="contact-title">Address</p>
+          <p>Mjölnergatan 5, 652 29 Märsta, Stockholm</p>
         </div>
       </div>
-      <img src="{% static 'img/findus11.jpg' %}" alt="restaurant outside image">
+      <img src="{% static 'img/resturant_outside.webp' %}" alt="restaurant outside image">
     </div>
   </div>
 </div>
