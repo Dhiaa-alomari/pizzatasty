@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['tasty-pizza.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com', 'localhost', '127.0.0.1']
 
 # CLOUDINARY account details
 CLOUDINARY_STORAGE = {
