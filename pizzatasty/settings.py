@@ -30,8 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
+# DEBUG = True
+DEBUG = os.getenv('DEBUG', False) == True
 
 ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -105,17 +105,6 @@ WSGI_APPLICATION = 'pizzatasty.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-'''
 # PostgreSQL database configuration using environment variables   
 DATABASES = {
     'default': {
@@ -135,41 +124,7 @@ if os.getenv('DATABASE_URL'):
         ssl_require=True
     )
 
-'''
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
-
-
-if os.getenv('DATABASE_URL'):
-    #  Remote Server-production settings
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.getenv('DATABASE_URL'),
-            conn_max_age=600,
-            ssl_require=not DEBUG
-        )
-    }   
-else:
-    # local Servr-development settings 
-    DATABASES = {
-        'default': {
-            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-            'NAME': os.getenv('DB_NAME', 'pizzatasty_db'),
-            'USER': os.getenv('DB_USER', 'postgres'),
-            'PASSWORD': os.getenv('DB_PASSWORD', ''),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '5432'),
-        }
-    }
-    
-if 'test' in sys.argv:  # Check if we're running tests
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for testing
-        'NAME': ':memory:',  # In-memory SQLite database
-    }
-
-'''
-    
+# CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost", "https://*.herokuapp.com"
     ]
@@ -220,4 +175,4 @@ DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
