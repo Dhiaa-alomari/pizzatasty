@@ -104,6 +104,19 @@ WSGI_APPLICATION = 'pizzatasty.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', # أو postgresql حسب جهازك
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# هذا السطر هو السحر! يخبر Django: إذا وجدت قاعدة بيانات في البيئة (مثل هروكو)، استخدمها.
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
+
+
 if os.getenv('DATABASE_URL'):
     #  Remote Server-production settings
     DATABASES = {
@@ -172,9 +185,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+WHITENOISE_MANIFEST_STRICT = False
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
