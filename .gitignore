@@ -22,3 +22,11 @@ __pycache__/
 .github/
 cloudinary_python.txt
 .venv
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+.DS_Store
+Thumbs.db
