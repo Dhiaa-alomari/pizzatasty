@@ -1,0 +1,1 @@
+web: gunicorn pizzatasty.wsgi --log-file -

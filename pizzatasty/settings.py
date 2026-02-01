@@ -119,7 +119,8 @@ WSGI_APPLICATION = 'pizzatasty.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         default='sqlite:///db.sqlite3',
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
@@ -127,6 +128,28 @@ if 'test' in sys.argv:  # Check if we're running tests
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for testing
         'NAME': ':memory:',  # In-memory SQLite database
+    }
+    
+if os.getenv('DATABASE_URL'):
+    #  Remote Server-production settings
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=not DEBUG  # SSL في الإنتاج فقط
+        )
+    }
+else:
+    # local Servr-development settings 
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+            'NAME': os.getenv('DB_NAME', 'pizzatasty_db'),
+            'USER': os.getenv('DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('DB_PASSWORD', ''),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+        }
     }
     
 CSRF_TRUSTED_ORIGINS = [
