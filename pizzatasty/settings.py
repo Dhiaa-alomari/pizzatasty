@@ -30,8 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.getenv('DEBUG', False) == True
+DEBUG = True # ACTIVE this line when developing locally!
+# DEBUG = os.getenv('DEBUG', False) == True  # ACTIVE this line when deploying to Heroku!
 
 ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com', 'localhost', '127.0.0.1']
 
