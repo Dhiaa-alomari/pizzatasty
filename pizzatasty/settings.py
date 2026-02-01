@@ -27,12 +27,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-for-development-only')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'tasty-pizza-d95969cf03fc.herokuapp.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 # CLOUDINARY account details
 CLOUDINARY_STORAGE = {
@@ -40,7 +44,7 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL', ''),
-    'secure':True   # Ensure HTTPS is used to deliver images
+    'secure': True   # Ensure HTTPS is used to deliver images
 }
 
 
@@ -101,33 +105,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pizzatasty.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # أو postgresql حسب جهازك
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
     }
-}
 
-# هذا السطر هو السحر! يخبر Django: إذا وجدت قاعدة بيانات في البيئة (مثل هروكو)، استخدمها.
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
-
-
-if os.getenv('DATABASE_URL'):
-    #  Remote Server-production settings
+# DB - PostgreSQL on Heroku
+elif os.getenv('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(
             default=os.getenv('DATABASE_URL'),
             conn_max_age=600,
-            ssl_require=not DEBUG  # SSL في الإنتاج فقط
+            ssl_require=True
         )
     }
+
+#  BD - Local PostgreSQL 
 else:
-    # local Servr-development settings 
     DATABASES = {
         'default': {
             'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
@@ -138,16 +136,14 @@ else:
             'PORT': os.getenv('DB_PORT', '5432'),
         }
     }
-    
-if 'test' in sys.argv:  # Check if we're running tests
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for testing
-        'NAME': ':memory:',  # In-memory SQLite database
-    }
-    
+
+# ====================================================================
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://localhost", "https://*.herokuapp.com"
-    ]
+    "https://localhost",
+    "https://*.herokuapp.com",
+    "https://tasty-pizza-d95969cf03fc.herokuapp.com"
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -181,18 +177,36 @@ USE_I18N = True
 USE_TZ = True
 
 
+# ====================================================================
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
+# ====================================================================
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-WHITENOISE_MANIFEST_STRICT = False
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
+# Cloudinary (media files)
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
+
+# ====================================================================
+# Security Settings
+# ====================================================================
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
