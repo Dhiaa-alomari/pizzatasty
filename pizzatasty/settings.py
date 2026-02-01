@@ -27,12 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-u4q-1axy53b6vqtr&4i(69=gc+^@w$gpu)=)dn%rq*go))7@bu'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = os.getenv('DEBUG') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -105,31 +103,7 @@ WSGI_APPLICATION = 'pizzatasty.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-# Use SSL for database connections in **production**
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default='sqlite:///db.sqlite3',
-#         conn_max_age=600,
-#         ssl_require=True
-#     )
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
-
-if 'test' in sys.argv:  # Check if we're running tests
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for testing
-        'NAME': ':memory:',  # In-memory SQLite database
-    }
-    
+# https://docs.djangoproject.com/en/6.0/ref/settings/#databases 
 if os.getenv('DATABASE_URL'):
     #  Remote Server-production settings
     DATABASES = {
@@ -150,6 +124,12 @@ else:
             'HOST': os.getenv('DB_HOST', 'localhost'),
             'PORT': os.getenv('DB_PORT', '5432'),
         }
+    }
+    
+if 'test' in sys.argv:  # Check if we're running tests
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for testing
+        'NAME': ':memory:',  # In-memory SQLite database
     }
     
 CSRF_TRUSTED_ORIGINS = [
