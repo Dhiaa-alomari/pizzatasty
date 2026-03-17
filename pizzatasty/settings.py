@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True     # ACTIVE this line when developing locally!
 # ACTIVE this line when deploying to Heroku!
-# DEBUG = os.getenv('DEBUG', False) == True
+DEBUG = os.getenv('DEBUG', 'FALSE') == 'TRUE'
 
 ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com',
                  'localhost', '127.0.0.1']

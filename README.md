@@ -428,19 +428,13 @@ The goal of the Tasty Pizza website is to create a fully functional and user-fri
 ---
 
 - Jshint.
-- link for js code test: [jshint](https://jshint.com/)
-  - Bookings js.
-    - Metrics.
-    - There are 2 functions in this file.
-      Function with the largest signature take 1 arguments, while the median is 1.
-    - Largest function has 11 statements in it, while the median is 5.5.
-    - The most complex function has a cyclomatic complexity value of 3 while the median is 2.
-  - main js.
-    - Metrics.
-    - There are 3 functions in this file.
-    - Function with the largest signature take 1 arguments, while the median is 1.
-    - Largest function has 2 statements in it, while the median is 1.
-    - The most complex function has a cyclomatic complexity value of 2 while the median is 1.
+- link for js code test: [site24x7.com](https://www.site24x7.com/tools/javascript-validator.html)
+  - Bookings js
+  - Result: valid javascript
+  - ![light house test](/document/js-validator-test-booking.png)
+  - main.js
+  - Result: valid javascript
+  - ![light house test](/document/js-validator-test.png)
     ***
   - Pep8
     - Link for: [test python files](https://pep8ci.herokuapp.com/)
@@ -449,7 +443,7 @@ The goal of the Tasty Pizza website is to create a fully functional and user-fri
   - Lighthouse
     - Lighthouse .This test is been done on my laptop.  
       ![light house test](/document/lighthouse-test.png)
-
+---
 
 ## Bugs.
 
@@ -474,6 +468,11 @@ The goal of the Tasty Pizza website is to create a fully functional and user-fri
     - utils.py: Updated to check if the booking time is in the future based on the user's timezone.
     - views.py: Modified to receive the user's timezone from the frontend and validate the booking time.
     - main.js: Added JavaScript to capture the user's timezone.
+- DEBUG has False value:
+  - In seeting file in the project DEBUG has value False with lowercase, it is not acceptable.  
+    ![light house test](/document/error-false-small-letter.png)
+  - Change FALSE to uppercase.  
+    ![light house test](/document/fix-false-small-letter-to-uppercase.png)
 - Bugs is not fixed:
   - none.
 
