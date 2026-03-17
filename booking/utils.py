@@ -3,10 +3,10 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from .models import Table, Booking
 
+
 def find_available_table(date, time, guests, user, tzname):
     #  embed the date and time into a single datetime object
     selected_datetime = datetime.combine(date, time)
-    
     #  determine the time range for checking existing bookings
     start_range = selected_datetime - timedelta(minutes=59)
     end_range = selected_datetime + timedelta(minutes=59)

@@ -415,7 +415,7 @@ The goal of the Tasty Pizza website is to create a fully functional and user-fri
       - The booking should be assigned to User1 (not User2), ensuring users can only book for themselves.
 
 
-## Authentication testing.
+## Validator testing (HTML, CSS,  JS,  PYTHON):
 
 - All pages are went through the URI test and passed
   ![html test](/document/html.valid.png)
@@ -444,6 +444,7 @@ The goal of the Tasty Pizza website is to create a fully functional and user-fri
     ***
   - Pep8
     - Link for: [test python files](https://pep8ci.herokuapp.com/)
+    - [test python files](/document/python-linter-test.png)
     - All Python code has been thoroughly tested, and the results show **no errors were found.**
   - Lighthouse
     - Lighthouse .This test is been done on my laptop.  
@@ -478,10 +479,9 @@ The goal of the Tasty Pizza website is to create a fully functional and user-fri
 
 
 ## Credits
-
+- Code Institute support.
 - Images for the entire project.
   - <https://www.freepik.com>
-  - <https://www.google.se/>
 
 - I used AI tools for supporting(Chatgpt, claudi).
 

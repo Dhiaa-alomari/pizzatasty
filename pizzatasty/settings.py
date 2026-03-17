@@ -30,10 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # ACTIVE this line when developing locally!
-# DEBUG = os.getenv('DEBUG', False) == True  # ACTIVE this line when deploying to Heroku!
+DEBUG = True     # ACTIVE this line when developing locally!
+# ACTIVE this line when deploying to Heroku!
+# DEBUG = os.getenv('DEBUG', False) == True
 
-ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['tasty-pizza-d95969cf03fc.herokuapp.com',
+                 'localhost', '127.0.0.1']
 
 # CLOUDINARY account details
 CLOUDINARY_STORAGE = {
@@ -41,7 +43,7 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL', ''),
-    'secure':not DEBUG  # Ensure HTTPS is used to deliver images
+    'secure': not DEBUG  # Ensure HTTPS is used to deliver images
 }
 
 
@@ -53,9 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'cloudinary_storage',
     'django.contrib.staticfiles',
-    #'cloudinary',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -104,8 +104,8 @@ WSGI_APPLICATION = 'pizzatasty.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases 
-# PostgreSQL database configuration using environment variables   
+# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+# PostgreSQL database configuration using environment variables
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
@@ -120,9 +120,9 @@ DATABASES = {
 #  when deployed to Heroku.
 if os.getenv('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600, 
+        conn_max_age=600,
         ssl_require=True
-    )
+        )
 
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
@@ -137,13 +137,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 

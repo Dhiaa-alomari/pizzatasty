@@ -117,7 +117,8 @@ def book_table(request):
                     None,
                     (
                         "Sorry, no table available for the selected date,"
-                        "time, and guests, or you have booked table already in this hour!"
+                        "time, and guests,"
+                        "or you have booked table already in this hour!"
                         ))
 
     else:
@@ -193,16 +194,16 @@ def update_booking(request, id):
             "%H:%M", time_control.localtime())
         current_time = datetime.strptime(current_time_str, "%H:%M").time()
 
-        if _date and _time and _date == date.today() and _time > current_time :
+        if _date and _time and _date == date.today() and _time > current_time:
             booking.date = _date
             booking.time = _time
-            
-        if _date and _time and _date == date.today() and _time <= current_time :
+
+        if _date and _time and _date == date.today() and _time <= current_time:
             messages.error(request, 'Invalid time!')
             return render(
                 request,
                 'booking/edit_book.html', {
-                    'booking':booking, 'get_range':range(1,11)})
+                   'booking': booking, 'get_range': range(1, 11)})
         else:
             if _date and _date >= date.today():
                 booking.date = _date
