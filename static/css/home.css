@@ -86,7 +86,7 @@
   margin: auto;  
 }
 
-.explore_menu h5 {
+.explore_menu p {
   color: white;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -94,7 +94,7 @@
   margin-bottom: 10px;
 }
 
-.explore_menu h5:hover {
+.explore_menu p:hover {
   color: orange;
   text-decoration: none;
 }
